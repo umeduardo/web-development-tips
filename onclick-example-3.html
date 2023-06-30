@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            //using funcion params to add product
+            function addProduct(name, amount){
+                var current_content = document.getElementById("my_target").innerHTML;
+                
+                //multiline string in javascript
+                var new_product = `<div>
+                    <h3>${name}</h3>
+                    <p>${amount}</p>
+                    </div>`;
+                document.getElementById("my_target").innerHTML = current_content + new_product
+            }
+        </script>
+        <style type="text/css">
+            #my_target{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap:20px;
+            }
+            #my_target div{
+                border: 1px solid #000;
+                padding:20px;
+            }
+            .btn{
+                display: inline;
+                padding:10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Onclick example 3</h1>
+            <p>Adds a new div content inside div result target with funcion params</p>
+            <a class="btn" href="#" onclick="addProduct('Macbook', 'R$ 5000,00')">Add Computer</a>
+            <a class="btn" href="#" onclick="addProduct('BMW','R$ 87000,00')">Add Car</a>
+            <a class="btn" href="#" onclick="addProduct('O Livro do javascript', 'R$ 47,00' )">Add Book</a>
+            <hr />
+        </div>
+        <div id="my_target"></div>
+    </body>
+</html>

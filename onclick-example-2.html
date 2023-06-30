@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function addProduct(){
+                var current_content = document.getElementById("my_target").innerHTML;
+                var new_product = `<div>
+                    <h3>My Product</h3>
+                    <p>R$ 200,00</p>
+                    </div>`;
+                document.getElementById("my_target").innerHTML = current_content + new_product
+            }
+        </script>
+        <style type="text/css">
+            #my_target{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap:20px;
+            }
+            #my_target div{
+                border: 1px solid #000;
+                padding:20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Onclick example 2</h1>
+            <p>Adds a new div content inside div result target</p>
+            <a href="#" onclick="addProduct()">Add Product</a>
+        </div>
+        <div id="my_target"></div>
+    </body>
+</html>
