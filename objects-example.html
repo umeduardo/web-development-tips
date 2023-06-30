@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function GetStudentInformation(){
+                var aluno = {
+                    first_name: "Peter",
+                    last_name: "Peter Parker",
+                    class: "9 ano",
+                    age: 14
+                };
+
+                document.getElementById("my_target").innerHTML = `
+                <p>
+                    Full Name: ${aluno.first_name} ${aluno.last_name} <br />
+                    Class Name: ${aluno.class} <br />
+                    Age: ${aluno.age} anos <br />
+                </p>
+                `;
+            }
+
+            window.onload = function(){
+                GetStudentInformation()
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Loading Student Data</h1>
+        <div id="my_target">
+            
+        </div>
+    </body>
+</html>

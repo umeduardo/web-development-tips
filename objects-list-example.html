@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function GetMerchantList(){
+                var merchants = [
+                    { //list item 1
+                    name: "Raimunda e Maya Advocacia ME",
+                    phone: "+558699903-87456",
+                    address: "Rua Flamboyan 123, Lins - SP",
+                    },
+                    { //list item 2
+                    name: "Tereza e Renato Mudanças ME",
+                    phone: "+551937389432",
+                    address: "Jardim Ipiranga (Nova Veneza), Lins - SP",
+                    },
+                    { //list item 2
+                    name: "Cristiane e Antonella Vidros Ltda",
+                    phone: "+558699903-87456",
+                    address: "Parque Boa Vista 12343, São Paulo - SP",
+                    }
+                ];
+
+                let targetConteiner = document.getElementById("my_target")
+                for(let i=0; i< merchants.length; i++){
+                    // using "+=" to concatenate HTML string
+                    targetConteiner.innerHTML += `
+                    <p>
+                        Company Name: ${merchants[i].name}<br />
+                        Phone: ${merchants[i].phone} <br />
+                        Address: ${merchants[i].address} anos <br />
+                    </p>
+                    `;    
+                }
+
+                
+            }
+
+            window.onload = function(){
+                //load Merchant List after load page
+                GetMerchantList()
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Loading Merchants List Data</h1>
+        <div id="my_target"></div>
+    </body>
+</html>
