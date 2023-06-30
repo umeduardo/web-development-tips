@@ -74,6 +74,11 @@
     </head>
     <body>
         <h1>Loading Merchants List Data By Category</h1>
+        <select onchange="GetMerchantListFromCategory(this.value)">
+            <option value="food"">Food</option>
+            <option value="services"">Services</option>
+            <option value="lawyer"">Lawyer</option>
+        </select>
         <a href="#" onclick="GetMerchantListFromCategory('food')">Food</a>
         <a href="#" onclick="GetMerchantListFromCategory('services')">General Services</a>
         <a href="#" onclick="GetMerchantListFromCategory('lawyer')">Lawyer</a>
