@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            var merchants = [
+                { //list item 1
+                name: "Raimunda e Maya Advocacia ME",
+                phone: "+558699903-87456",
+                address: "Rua Flamboyan 123, Lins - SP",
+                category: "lawyer",
+                },
+                { //list item 2
+                name: "Tereza e Renato Mudanças ME",
+                phone: "+551937389432",
+                address: "Jardim Ipiranga (Nova Veneza), Lins - SP",
+                category: "services",
+                },
+                { //list item 3
+                name: "Cristiane e Antonella Vidros Ltda",
+                phone: "+558699903-87456",
+                address: "Parque Boa Vista 12343, São Paulo - SP",
+                category: "food",
+                },
+                { //list item 3
+                name: "Cachorro Quente do Marcelo",
+                phone: "+558699903-87456",
+                address: "Av Dom Severino, Teresina - PI",
+                category: "food",
+                },
+                { //list item 3
+                name: "Jessica Brenca Advogacia ME",
+                phone: "+558699903-87456",
+                address: "Parque Boa Vista 12343, Rio de Janeiro - RJ",
+                category: "lawyer",
+                }
+            ];
+            
+            function GetMerchantListFromCategory(category){
+                let targetConteiner = document.getElementById("my_target")
+                targetConteiner.innerHTML = "" //clear old HTML content before process list
+                for(let i=0; i< merchants.length; i++){
+                    if(merchants[i].category == category){
+                        // using "+=" to concatenate HTML string
+                        targetConteiner.innerHTML += `
+                        <p>
+                            Company Name: ${merchants[i].name}<br />
+                            Phone: ${merchants[i].phone} <br />
+                            Address: ${merchants[i].address}<br />
+                            Category: ${merchants[i].category} <br />
+                        </p>
+                        `;    
+                    }
+                }   
+            }
+
+            function GetMerchantList(){
+                let targetConteiner = document.getElementById("my_target")
+                for(let i=0; i< merchants.length; i++){
+                    // using "+=" to concatenate HTML string
+                    targetConteiner.innerHTML += `
+                    <p>
+                        Company Name: ${merchants[i].name}<br />
+                        Phone: ${merchants[i].phone} <br />
+                        Address: ${merchants[i].address} anos <br />
+                    </p>
+                    `;    
+                }
+            }
+
+            window.onload = function(){
+                GetMerchantList() //loading initial merchant list
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Loading Merchants List Data By Category</h1>
+        <a href="#" onclick="GetMerchantListFromCategory('food')">Food</a>
+        <a href="#" onclick="GetMerchantListFromCategory('services')">General Services</a>
+        <a href="#" onclick="GetMerchantListFromCategory('lawyer')">Lawyer</a>
+        <div id="my_target"></div>
+    </body>
+</html>
