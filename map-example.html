@@ -21,18 +21,16 @@
                         zoom: 14,
                         mapTypeControl: false,
                         disableDefaultUI: true,
-                        options:[
+                    });
+
+                    let styles =[
                             {
                             featureType: "poi.business",
                             stylers: [{ visibility: "off" }],
                             },
-                            {
-                            featureType: "transit",
-                            elementType: "labels.icon",
-                            stylers: [{ visibility: "off" }],
-                            },
                         ]
-                    });
+
+                    map.setOptions({styles});
 
                     infowindow = new google.maps.InfoWindow();
                 }
