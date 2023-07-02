@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+              key: "AIzaSyAPEYiI1Wit0wMTs-OPym-Raf2s6h-WgZI",
+              v: "weekly",
+              // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+              // Add other bootstrap parameters as needed, using camel case.
+            });
+          </script>
+          <script type="text/javascript">
+                var map;
+                var infowindow;
+
+                async function initMap() {
+                    const { Map } = await google.maps.importLibrary("maps");
+
+                    map = new Map(document.getElementById("map"), {
+                        center: { lat: -5.0730416, lng: -42.7833536 },
+                        zoom: 14,
+                        mapTypeControl: false,
+                        disableDefaultUI: true,
+                        options:[
+                            {
+                            featureType: "poi.business",
+                            stylers: [{ visibility: "off" }],
+                            },
+                            {
+                            featureType: "transit",
+                            elementType: "labels.icon",
+                            stylers: [{ visibility: "off" }],
+                            },
+                        ]
+                    });
+
+                    infowindow = new google.maps.InfoWindow();
+                }
+
+                initMap();
+          </script>
+          <script>
+            //Estabelecimentos
+            var merchants = [
+                { //list item 1
+                name: "Raimunda e Maya Advocacia ME",
+                phone: "+558699903-87456",
+                address: "Rua Flamboyan 123, Lins - SP",
+                image: "https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-para-restaurante11-e1486901342381.jpg",
+                category: "lawyer",
+                lat: -5.054489033500814,
+                lng: -42.77043608138428
+                },
+                { //list item 2
+                name: "Tereza e Renato Mudanças ME",
+                phone: "+551937389432",
+                address: "Jardim Ipiranga (Nova Veneza), Lins - SP",
+                image: "https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-para-restaurante11-e1486901342381.jpg",
+                category: "services",
+                lat: -5.0930469957278675,
+                lng: -42.76846197554932
+                },
+                { //list item 3
+                name: "Cristiane e Antonella Vidros Ltda",
+                phone: "+558699903-87456",
+                address: "Parque Boa Vista 12343, São Paulo - SP",
+                image: "https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/castelo-supremo-e1486901459613.jpg",
+                category: "food",
+                lat: -5.044656812679791,
+                lng: -42.751639160607915
+                },
+                { //list item 3
+                name: "Cachorro Quente do Marcelo",
+                phone: "+558699903-87456",
+                address: "Av Dom Severino, Teresina - PI",
+                image: "https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-spettaria.jpg",
+                category: "food",
+                lat: -5.0969142091734785,
+                lng: -42.740415513438876,
+                },
+                { //list item 3
+                name: "Jessica Brenca Advogacia ME",
+                phone: "+558699903-87456",
+                address: "Parque Boa Vista 12343, Rio de Janeiro - RJ",
+                image: "https://blog.agenciadosite.com.br/wp-content/uploads/2017/01/logo-saboralenha-e1486901538725.jpg",
+                category: "lawyer",
+                lat: -5.045018900340681,
+                lng: -42.75672876704568,
+                }
+            ];
+
+            function GetMerchantListWithFilter(category){
+                let targetConteiner = document.getElementById("restaurants")
+                targetConteiner.innerHTML = "" //clear old HTML content before process list
+                for(let i=0; i< merchants.length; i++){
+                    if(merchants[i].category == category){
+                        // using "+=" to concatenate HTML string
+                        targetConteiner.innerHTML += `
+                        <div class="restaurant">
+                            <div class="restaurant-img">
+                                <img src="${merchants[i].image}" />
+                            </div>
+                            <div class="restaurant-content">
+                                <h2>${merchants[i].name}</h2>
+                                <label class="label ${merchants[i].category}">${merchants[i].category}</label>
+                                <p>${merchants[i].address}</p>
+                            </div>
+                        </div>`;    
+
+                        var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(merchants[i].lat,merchants[i].lng),
+                            title: merchants[i].name,
+                            map
+                        });
+                    }
+                }   
+            }
+
+            function GetMerchantList(){
+                let targetConteiner = document.getElementById("restaurants")
+                for(let i=0; i< merchants.length; i++){
+                    // using "+=" to concatenate HTML string
+                    let htmlRestaurante = `
+                    <div class="restaurant">
+                        <div class="restaurant-img">
+                            <img src="${merchants[i].image}" />
+                        </div>
+                        <div class="restaurant-content">
+                            <h2>${merchants[i].name}</h2>
+                            <label class="label ${merchants[i].category}">${merchants[i].category}</label>
+                            <p>${merchants[i].address}</p>
+                        </div>
+                    </div>`;
+                    targetConteiner.innerHTML += htmlRestaurante
+                    
+                    let marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(merchants[i].lat,merchants[i].lng),
+                        title: merchants[i].name,
+                        map
+                    });
+
+                    google.maps.event.addListener(marker, 'click', function() {
+                    infowindow.setContent(htmlRestaurante);
+                    infowindow.open(map,marker);
+                    })
+                }
+            }
+
+            window.onload = function(){
+                GetMerchantList()
+            }
+          </script>
+
+          <style type="text/css">
+            body{  box-sizing: border-box;}
+            #map{position: absolute;top:0;left: 0;width: 100%;height:100%;z-index: -1;}
+            #content{
+                padding:10px;
+                background: #FFF;
+                width: 500px;
+                max-width: 100%;
+                min-height: 600px;
+                margin-top:30px;
+                margin-left:30px;
+                position: absolute;
+            }
+
+            #restaurants{overflow: scroll;
+                    display: flex; 
+                    flex-direction: column;
+                    max-height: 500px;}
+            .restaurant{display: flex;align-items: center;}
+            .restaurant .restaurant-img{max-width: 200px;border-radius: 4px;overflow: hidden;}
+            .restaurant .restaurant-img img{width: 100%;}
+            .restaurant .restaurant-content{}
+
+            .label{display: inline-block;padding:4px 12px;text-align: center;font-weight: bold;border-radius: 100px;font-size:12px}
+            .label.lawyer{background: green;color:#FFF}
+            .label.food{background: orange; color:#FFF}
+            .label.services{background: blue; color:#FFF}
+          </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <div id="content">
+            <h1>Map example</h1>
+            <p>This content is replaced after page load</p>
+            <div id="restaurants">
+
+            </div>
+        </div>
+    </body>
+</html>
